@@ -1,0 +1,14 @@
+<h1>Caesar Cipher</h1>
+
+<form method="post">
+  <p>What do you want to encode?</p>
+  <input type="text" name="string_to_encode" value="<%= @string_to_encode %>">
+  <p>Enter a shift factor:</p>
+  <input type="text" name="shift" value="<%= @shift %>">
+  <input type="submit">
+</form>
+
+<% if @encoded_string %>
+  <p><%= @encoded_string  %></p>
+<% end %>
+
