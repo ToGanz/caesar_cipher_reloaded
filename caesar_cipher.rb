@@ -5,8 +5,8 @@ enable :sessions
 
 get '/' do
   @encoded_string = session.delete(:encoded_string)
-  #@string_to_encode = params["string_to_encode"]
-  #@encoded_string = params["encoded_string"]
+  @string_to_encode = session.delete(:string_to_encode)
+  @shift = session.delete(:shift)
   erb :index
 end
 
@@ -15,6 +15,8 @@ post '/' do
     @shift = params["shift"].to_i
     @encoded_string = caesar_cipher(@string_to_encode, @shift)
     session[:encoded_string] = @encoded_string
+    session[:string_to_encode] = @string_to_encode
+    session[:shift] = @shift
     redirect "/"
 end
 
@@ -52,9 +54,4 @@ def caesar_cipher(str, shift)
   end
 end
 
-test_string = "AbC zZz!2"
-
-puts caesar_cipher(test_string, -2)
-
-#'a'.ord wäre gute Lösung ( umgekehrt: 97.chr)
 
